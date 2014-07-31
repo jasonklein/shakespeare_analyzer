@@ -1,5 +1,23 @@
 require 'open-uri'
 
+class LinesKeeper
+
+  attr_reader :url, :file_to_parse, :speechings
+
+  def initialize(url)
+    @url = url
+  end
+
+  def get_file
+    @file_to_parse = open(url).read
+  end
+
+  def break_into_speechings
+    @speechings = file_to_parse.split('SPEECH>')
+  end
+
+end
+
 url = 'http://www.ibiblio.org/xml/examples/shakespeare/macbeth.xml'
 
 macbeth = open(url).read
